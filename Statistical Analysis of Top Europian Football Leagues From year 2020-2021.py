@@ -1,16 +1,43 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df =pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\leaguestatistics.csv')
-df1 =pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\premierleaguestat.csv')
-df2 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\seriastat.csv')
-df3 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\laligastat.csv')
-df4 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\ligue1stat.csv')
-df5 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\bundesligastat.csv')
-df6 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\topplayerstat.csv')
-df7 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\topclubpayment.csv')
-df8 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\Comparisonfile.csv')
-df9 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\Comparisonfile1.csv')
+base_folder = input("Enter the folder path containing the CSV files: ")
+
+# Define the file names
+file_names = {
+    "league_stats": "leaguestatistics.csv",
+    "premier_league": "premierleaguestat.csv",
+    "serie_a": "seriastat.csv",
+    "la_liga": "laligastat.csv",
+    "ligue_1": "ligue1stat.csv",
+    "bundesliga": "bundesligastat.csv",
+    "top_player": "topplayerstat.csv",
+    "top_club_payment": "topclubpayment.csv",
+    "comparison_1": "Comparisonfile1.csv",
+    "comparison_2": "Comparisonfile2.csv"
+}
+
+# Construct full paths and read the CSV files
+dataframes = {}
+for name, file_name in file_names.items():
+    file_path = f"{base_folder}/{file_name}"  # Use string formatting for paths
+    try:
+        dataframes[name] = pd.read_csv(file_path)
+        print(f"Loaded {file_name} successfully.")
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+
+# Access each DataFrame using its name
+df  = dataframes.get('league_stats')
+df1 = dataframes.get('premier_league')
+df2 = dataframes.get('seri_a')
+df3 = dataframes.get('la_liga')
+df4 = dataframes.get('ligue_1')
+df5 = dataframes.get('bundesliga')
+df6 = dataframes.get('top_player')
+df7 = dataframes.get('topclubpayment.csv')
+df8 = dataframes.get('Comparisonfile_1')
+df9 = dataframes.get('Comparisonfile1_2')
 
 
 while True:
