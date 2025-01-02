@@ -3,31 +3,21 @@ import pandas as pd
 
 base_folder = input("Enter the folder path containing the CSV files: ")
 
-# Define the file names
 file_names = {
-    "league_stats": "leaguestatistics.csv",
-    "premier_league": "premierleaguestat.csv",
-    "serie_a": "seriastat.csv",
-    "la_liga": "laligastat.csv",
-    "ligue_1": "ligue1stat.csv",
-    "bundesliga": "bundesligastat.csv",
-    "top_player": "topplayerstat.csv",
-    "top_club_payment": "topclubpayment.csv",
-    "comparison_1": "Comparisonfile1.csv",
-    "comparison_2": "Comparisonfile2.csv"
+    "league_stats": "leaguestatistics.csv", "premier_league": "premierleaguestat.csv",
+    "serie_a": "seriastat.csv", "la_liga": "laligastat.csv", "ligue_1": "ligue1stat.csv",
+    "bundesliga": "bundesligastat.csv", "top_player": "topplayerstat.csv", "top_club_payment": "topclubpayment.csv",
+    "comparison_1": "Comparisonfile1.csv", "comparison_2": "Comparisonfile2.csv"
 }
-
-# Construct full paths and read the CSV files
 dataframes = {}
 for name, file_name in file_names.items():
-    file_path = f"{base_folder}/{file_name}"  # Use string formatting for paths
+    file_path = f"{base_folder}/{file_name}"  
     try:
         dataframes[name] = pd.read_csv(file_path)
         print(f"Loaded {file_name} successfully.")
     except FileNotFoundError:
         print(f"File not found: {file_path}")
 
-# Access each DataFrame using its name
 df  = dataframes.get('league_stats')
 df1 = dataframes.get('premier_league')
 df2 = dataframes.get('seri_a')
@@ -188,7 +178,8 @@ while True:
                     plt.show()
                     
                 elif n23 == 3:
-                    df1.plot(x = ["Football League"], y = ['Home goals per match', 'Away goals per match'],kind = 'bar',                                                         color = ['r','c','b'], title = "Home goal, away goal of both teams scoring a goal", edgecolor = 'black', rot = 12)
+                    df1.plot(x = ["Football League"], y = ['Home goals per match', 'Away goals per match'], kind = 'bar',
+                             color = ['r','c','b'], title = "Home goal, away goal of both teams scoring a goal", edgecolor = 'black', rot = 12)
                     plt.show()
 
 
