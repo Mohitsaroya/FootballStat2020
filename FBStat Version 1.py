@@ -18,10 +18,10 @@ while True:
 
     print("---------------------------------------------------------------------------\n"
         "Home Menu\n"
-      "1. Display general details about the prominant Europian football Leagues and terminology\n"
+      "1. Display general details about the prominant European football Leagues and terminology\n"
       "2. Display the details for the different leagues\n"
       "3. Display the stats for the clubs in each league\n"
-      "4. Statistical analysis of top 56 football players in history of football\n"
+      "4. Statistical analysis of top 56 football players in the history of football\n"
       "5. Market Value and Revenue(in million US dollars) of top 10 football clubs\n"
       "6. Comparing Clubs\n"
       "7. Exit\n"
