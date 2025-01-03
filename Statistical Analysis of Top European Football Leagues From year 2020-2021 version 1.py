@@ -12,7 +12,6 @@ df7 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\st
 df8 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\Comparisonfile.csv')
 df9 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\Comparisonfile1.csv')
 
-
 while True:
 
 ##########################################################################################
@@ -31,7 +30,6 @@ while True:
       "---------------------------------------------------------------------------")
     n = int(input("Enter the number: "))
 
-    
 ##########################################################################################
 
     if n == 7:
