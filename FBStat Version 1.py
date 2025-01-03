@@ -1,16 +1,16 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df =pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\leaguestatistics.csv')
-df1 =pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\premierleaguestat.csv')
-df2 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\seriastat.csv')
-df3 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\laligastat.csv')
-df4 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\ligue1stat.csv')
-df5 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\bundesligastat.csv')
-df6 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\topplayerstat.csv')
-df7 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\topclubpayment.csv')
-df8 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\Comparisonfile.csv')
-df9 = pd.read_csv(r'C:\Users\user\AppData\Local\Programs\Python\Python38\proj\stats\Comparisonfile1.csv')
+df =pd.read_csv(r'<path\to\the\folder\>leaguestatistics.csv')
+df1 =pd.read_csv(r'<path\to\the\folder\>premierleaguestat.csv')
+df2 = pd.read_csv(r'<path\to\the\folder\>seriastat.csv')
+df3 = pd.read_csv(r'<path\to\the\folder\>laligastat.csv')
+df4 = pd.read_csv(r'<path\to\the\folder\>ligue1stat.csv')
+df5 = pd.read_csv(r'<path\to\the\folder\>bundesligastat.csv')
+df6 = pd.read_csv(r'<path\to\the\folder\>topplayerstat.csv')
+df7 = pd.read_csv(r'<path\to\the\folder\>topclubpayment.csv')
+df8 = pd.read_csv(r'<path\to\the\folder\>Comparisonfile.csv')
+df9 = pd.read_csv(r'<path\to\the\folder\>Comparisonfile1.csv')
 
 while True:
 
