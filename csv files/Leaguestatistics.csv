@@ -1,6 +1,6 @@
-Football League,Country,Home Wins,Draws ptg,Away Wins,Over 1.5 g,Over 2.5 g,Over 3.5 g,Goals,Goals per match,Home goals per match,Away goals per match,Both teams scored ptg
-Premier League,England,38,22,40,73,50,27,1027,2.69,1.35,1.34,49
-SerieA,Italy,41,25,34,83,57,36,1163,3.06,1.63,1.45,60
-La Liga,Spain,42,29,30,73,44,25,953,2.51,1.37,1.14,52
-Ligue 1,France,37,25,38,78,54,31,1049,2.76,1.4,4.36,54
-Bundesliga,Germany,42,26,31,82,59,37,928,3.03,1.68,1.36,60
+Index,Football League,Country,Home Wins,Draws ptg,Away Wins,Over 1.5 g,Over 2.5 g,Over 3.5 g,Goals,Goals per match,Home goals per match,Away goals per match,Both teams scored ptg
+1,Premier League,England,38,22,40,73,50,27,1027,2.69,1.35,1.34,49
+2,SerieA,Italy,41,25,34,83,57,36,1163,3.06,1.63,1.45,60
+3,La Liga,Spain,42,29,30,73,44,25,953,2.51,1.37,1.14,52
+4,Ligue 1,France,37,25,38,78,54,31,1049,2.76,1.4,4.36,54
+5,Bundesliga,Germany,42,26,31,82,59,37,928,3.03,1.68,1.36,60
