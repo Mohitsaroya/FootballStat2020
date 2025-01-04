@@ -32,11 +32,10 @@ class Prompts():
         return int(input("Enter your choice: "))
     
     def display_general_prompt(self):
-        print("1. League Names\n"
-            "2. Goals per Match\n"
-            "3. win/draw/loss comparison\n"
-            "4. Home goals vs away goals\n"
-            "5. Back\n\n")
+        print("1. League Names and Goals per Match\n"
+            "2. Total goals, Home goals per match, away goals per match\n"
+            "3. Home wins vs away wins\n"
+            "4. Back\n\n")
         return int(input("Enter your choice: "))
     
     def display_league_prompt(self):

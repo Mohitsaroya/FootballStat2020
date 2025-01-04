@@ -5,6 +5,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from Prompts import Prompts
+from Plot import Plots
 
 class FootballAnalysis:
     def __init__(self, base_folder):
@@ -19,6 +20,10 @@ class FootballAnalysis:
         }
         self.dataframes = {}
         self.load_data()
+    
+    def choice_and_plot(self):
+        choice = Prompts.choices_for_plot()
+        Plots().table_league(choice) 
 
     def load_data(self):
         for name, file_name in self.file_names.items():
@@ -31,20 +36,8 @@ class FootballAnalysis:
             except UnicodeDecodeError:
                 print(f"Encoding error in file: {file_path}")
 
-    def display_general_details(self):
         
-        df = self.dataframes.get('league_stats')
-        if df is None or df.empty:  
-            print("League statistics data is missing or empty!")
-            return
-        self.choices_display_leagues(df)
-        self.choices_display_general(df)
-        
-    def choices_for_plot(self):
-        print("1. Table\n"
-              "2. Line Chart\n"
-              "3. Bar Chart\n")
-        return int(input("Enter your choice: "))
+
         
     def display_general_details(self, choice):
         df = self.dataframes.get('league_stats')
@@ -54,23 +47,20 @@ class FootballAnalysis:
         
         try:
             if choice == 1:
-                print(df[["Football League", "Country"]])
+                Plots().table_league(1)
             elif choice == 2:
-                self.plot_goals_per_match(df)
+                self.choice_and_plot()     
             elif choice == 3:
-                Prompts().choices_for_plot()
+                self.choice_and_plot()
             elif choice == 4:
-                pass
-             
-            elif choice == 5:
                 return
             else:
                 print("Invalid choice. Please select a valid option.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+            
 
     def plot_goals_per_match(self, df):
-        
         choice = self.choices_for_plot()
 
         if choice == 1:
@@ -83,12 +73,6 @@ class FootballAnalysis:
             df.plot(x="Football League", y="Goals per match", kind='bar', title="Goals per Match by League")
             plt.show()
 
-    def display_league_details(self):
-        print("Displaying league-specific details... (to be implemented)")
-        
-
-    def display_club_statistics(self):
-        print("Displaying club statistics... (to be implemented)")
         
 
     def run(self):
