@@ -159,7 +159,7 @@ while True:
                     plt.show()
                     
                 elif n23 == 3:
-                    df1.plot(x = ["Football League"], y = ['Home goals per match', 'Away goals per match'],kind = 'bar',                                                         color = ['r','c','b'], title = "Home goal, away goal of both teams scoring a goal", edgecolor = 'black', rot = 12)
+                    df1.plot(x = ["Football League"], y = ['Home goals per match', 'Away goals per match'],kind = 'bar', color = ['r','c','b'], title = "Home goal, away goal of both teams scoring a goal", edgecolor = 'black', rot = 12)
                     plt.show()
 
 
