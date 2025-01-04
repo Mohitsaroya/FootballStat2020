@@ -8,7 +8,6 @@ from Prompts import Prompts
 
 class FootballAnalysis:
     def __init__(self, base_folder):
-        prompts = Prompts()
         self.base_folder = base_folder
         self.file_names = {
             "league_stats": "leaguestatistics.csv",
@@ -47,13 +46,11 @@ class FootballAnalysis:
               "3. Bar Chart\n")
         return int(input("Enter your choice: "))
         
-    def display_general_details(self):
+    def display_general_details(self, choice):
         df = self.dataframes.get('league_stats')
         if df is None or df.empty: 
             print("League statistics data is missing or empty!")
             return
-
-        choice = Prompts().display_general_details()
         
         try:
             if choice == 1:
@@ -61,7 +58,7 @@ class FootballAnalysis:
             elif choice == 2:
                 self.plot_goals_per_match(df)
             elif choice == 3:
-                self.choices_display_general(df)
+                Prompts().choices_for_plot()
             elif choice == 4:
                 pass
              
@@ -104,7 +101,7 @@ class FootballAnalysis:
             elif choice == 0:
                 menu.display_glossary()
             elif choice == 1:
-                menu.display_general_details()
+                self.display_general_details(menu.display_general_prompt())
             elif choice == 2:
                 menu.display_league_specific()
             else:

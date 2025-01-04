@@ -28,22 +28,22 @@ class Prompts():
     def choices_for_plot(self):
         print("1. Table\n"
               "2. Line Chart\n"
-              "3. Bar Chart\n")
+              "3. Bar Chart\n\n")
         return int(input("Enter your choice: "))
     
-    def display_general_details(self):
+    def display_general_prompt(self):
         print("1. League Names\n"
             "2. Goals per Match\n"
             "3. win/draw/loss comparison\n"
-            "4. Home goals vs away goals"
-            "5. Back")
+            "4. Home goals vs away goals\n"
+            "5. Back\n\n")
         return int(input("Enter your choice: "))
     
-    def display_league_specific(self):
+    def display_league_prompt(self):
         print("1. Display league table\n"
             "2. Display league statistics\n"
             "3. Display league fixtures\n"
-            "4. Back")
+            "4. Back\n\n")
         return int(input("Enter your choice: "))
     
     
