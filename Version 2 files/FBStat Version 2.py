@@ -1,5 +1,5 @@
 ########################
-# Unfinished code
+# Unfinished code (dont run)
 # Statistical Analysis of Top European Football Leagues From year 2020-2021 version 2
 ########################
 import matplotlib.pyplot as plt
@@ -8,6 +8,7 @@ from Prompts import Prompts
 
 class FootballAnalysis:
     def __init__(self, base_folder):
+        prompts = Prompts()
         self.base_folder = base_folder
         self.file_names = {
             "league_stats": "leaguestatistics.csv",
@@ -30,31 +31,6 @@ class FootballAnalysis:
                 print(f"File not found: {file_path}")
             except UnicodeDecodeError:
                 print(f"Encoding error in file: {file_path}")
-    
-
-    def main_menu(self):
-        print("---------------------------------------------------------------------------\n"
-            "Home Menu\n"
-            "1. General Details About Football Leagues\n"
-            "2. League-Specific Details\n"
-            "3. Club Statistics\n"
-            "4. Exit\n"
-            "---------------------------------------------------------------------------\n"
-            "0. Glossary\n"
-            "---------------------------------------------------------------------------")
-        
-        return int(input("Enter the number: "))
-    
-    def display_glossary(self):
-        print('ok\n'
-            '============================================================\n'
-            'GF: Goals For (goals scores for the team)\n'
-            'GA: Goals Against (goals scored against the team)\n'
-            'GD: Goal Difference (difference between the goals scored by and against the team)\n'
-            'PPG: Points Per Game\n'
-            'CS: Clean Sheet (matches with no goals conceded)\n'
-            'FTS: Failed To Score (no goals for the team)\n'
-            '============================================================\n')
 
     def display_general_details(self):
         
@@ -77,14 +53,9 @@ class FootballAnalysis:
             print("League statistics data is missing or empty!")
             return
 
-        print("1. League Names\n"
-            "2. Goals per Match\n"
-            "3. win/draw/loss comparison\n"
-            "4. Home goals vs away goals"
-            "5. Back")
+        choice = Prompts().display_general_details()
         
         try:
-            choice = int(input("Enter your choice: "))
             if choice == 1:
                 print(df[["Football League", "Country"]])
             elif choice == 2:
@@ -124,19 +95,18 @@ class FootballAnalysis:
         
 
     def run(self):
+        menu = Prompts()
         while True:
-            choice = self.main_menu()
-            if choice == 4:
+            choice = menu.main_menu()
+            if choice == 3:
                 print("Exiting program. Goodbye!")
                 break
             elif choice == 0:
-                s
+                menu.display_glossary()
             elif choice == 1:
-                self.display_general_details()
+                menu.display_general_details()
             elif choice == 2:
-                self.display_league_details()
-            elif choice == 3:
-                self.display_club_statistics()
+                menu.display_league_specific()
             else:
                 print("Invalid choice. Please try again.")
 
