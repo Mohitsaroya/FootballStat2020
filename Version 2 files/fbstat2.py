@@ -7,13 +7,18 @@ import pandas as pd
 from Prompts import Prompts
 from Plot import Plots
 
-class FootballAnalysis:
+class FootballAnalysis():
     def __init__(self):
-        self.plot_data = Plots()
+        self.plot_data = Plots(base_folder)
     
     def choice_and_plot(self):
-        choice = Prompts.choices_for_plot()
-        Plots().table_league(choice) 
+        choice = Prompts.choices_for_plot(self)
+        if choice == 1:
+            self.plot_data.table_league(choice)
+        elif choice == 2:
+            self.plot_data.bar_graph_league(choice)
+        elif choice == 3:  
+            self.plot_data.bar_graph_league(choice)
 
      
     def display_general_details(self, choice):
@@ -24,7 +29,7 @@ class FootballAnalysis:
         
         try:
             if choice == 1:
-                self.plot_data.table_league(1)
+                self.choice_and_plot()
             elif choice == 2:
                 self.choice_and_plot()     
             elif choice == 3:
@@ -71,6 +76,6 @@ class FootballAnalysis:
 
 
 if __name__ == "__main__":
-    base_folder = input("Enter the folder path containing the CSV files: ")
-    analysis = FootballAnalysis(base_folder)
+    base_folder = "D:\Macewan\semester 5\CMPT 200\GitHub\FootballStat2020\csv files"
+    analysis = FootballAnalysis()
     analysis.run()

@@ -14,7 +14,8 @@ class Plots():
         }
         self.dataframes = {}
         self.load_data()
-    
+        
+            
     def load_data(self):
         for name, file_name in self.file_names.items():
             file_path = f"{self.base_folder}/{file_name}"
@@ -28,51 +29,52 @@ class Plots():
         
         
     def table_league(self, choice):
+        df = self.dataframes.get('league_stats')
         if choice == 1:
-            print(pd.DataFrame[["Football League", "Country", "Goals per Match"]])
+            print(df[["football league", "country", "goals per match"]])
         elif choice == 2:
-            print(pd.DataFrame[["Football League", "Home goals per match", "Away goals per match"]])
+            print(df[["football league", "home goals per match", "goals per match"]])
         elif choice == 3:
-            print(pd.DataFrame[["Football League", "Home Wins", "Away Wins"]])
+            print(df[["football league", "home wins", "away wins"]])
     
     def bar_graph_league(self, choice):
         if choice == 1:
-            df = pd.DataFrame[["Football League", "Goals per Match"]]
-            plt.bar(df["Football League"], df["Goals per Match"])
-            plt.title("Goals per Match by League")
+            df = pd.DataFrame[["football league", "goals per match"]]
+            plt.bar(df["football league"], df["goals per match"])
+            plt.title("goals per match by League")
             plt.show()
         elif choice == 2:
-            df = pd.DataFrame[["Football League", "Home goals per match", "Away goals per match"]]
-            plt.bar(df["Football League"], df["Home goals per match"], label="Home Goals")
-            plt.bar(df["Football League"], df["Away goals per match"], label="Away Goals")
-            plt.title("Home and Away Goals per Match by League")
+            df = pd.DataFrame[["football league", "home goals per match", "away goals per match"]]
+            plt.bar(df["football league"], df["home goals per match"], label="home Goals")
+            plt.bar(df["football league"], df["away goals per match"], label="away Goals")
+            plt.title("home and away goals per match by League")
             plt.legend()
             plt.show()
         elif choice == 3:
-            df = pd.DataFrame[["Football League", "Home Wins", "Away Wins"]]
-            plt.bar(df["Football League"], df["Home Wins"], label="Home Wins")
-            plt.bar(df["Football League"], df["Away Wins"], label="Away Wins")
-            plt.title("Home and Away Wins by League")
+            df = pd.DataFrame[["football league", "home wins", "away wins"]]
+            plt.bar(df["football league"], df["home wins"], label="home wins")
+            plt.bar(df["football league"], df["away wins"], label="away wins")
+            plt.title("home and away wins by League")
             plt.legend()
             plt.show()
     
     def line_graph_league(self, choice):
         if choice == 1:
-            df = pd.DataFrame[["Football League", "Goals per Match"]]
-            plt.plot(df["Football League"], df["Goals per Match"])
-            plt.title("Goals per Match by League")
+            df = pd.DataFrame[["football league", "goals per match"]]
+            plt.plot(df["football league"], df["goals per match"])
+            plt.title("goals per match by League")
             plt.show()
         elif choice == 2:
-            df = pd.DataFrame[["Football League", "Home goals per match", "Away goals per match"]]
-            plt.plot(df["Football League"], df["Home goals per match"], label="Home Goals")
-            plt.plot(df["Football League"], df["Away goals per match"], label="Away Goals")
-            plt.title("Home and Away Goals per Match by League")
+            df = pd.DataFrame[["football league", "home goals per match", "away goals per match"]]
+            plt.plot(df["football league"], df["home goals per match"], label="home Goals")
+            plt.plot(df["football league"], df["away goals per match"], label="away Goals")
+            plt.title("home and away goals per match by League")
             plt.legend()
             plt.show()
         elif choice == 3:
-            df = pd.DataFrame[["Football League", "Home Wins", "Away Wins"]]
-            plt.plot(df["Football League"], df["Home Wins"], label="Home Wins")
-            plt.plot(df["Football League"], df["Away Wins"], label="Away Wins")
-            plt.title("Home and Away Wins by League")
+            df = pd.DataFrame[["football league", "home wins", "away wins"]]
+            plt.plot(df["football league"], df["home wins"], label="home wins")
+            plt.plot(df["football league"], df["away wins"], label="away wins")
+            plt.title("home and away wins by League")
             plt.legend()
             plt.show()
