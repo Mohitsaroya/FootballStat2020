@@ -4,6 +4,7 @@
 ########################
 import matplotlib.pyplot as plt
 import pandas as pd
+from Prompts import Prompts
 
 class FootballAnalysis:
     def __init__(self, base_folder):
@@ -31,7 +32,7 @@ class FootballAnalysis:
                 print(f"Encoding error in file: {file_path}")
     
 
-    def display_menu(self):
+    def main_menu(self):
         print("---------------------------------------------------------------------------\n"
             "Home Menu\n"
             "1. General Details About Football Leagues\n"
@@ -124,12 +125,12 @@ class FootballAnalysis:
 
     def run(self):
         while True:
-            choice = self.display_menu()
+            choice = self.main_menu()
             if choice == 4:
                 print("Exiting program. Goodbye!")
                 break
             elif choice == 0:
-                self.display_glossary()
+                s
             elif choice == 1:
                 self.display_general_details()
             elif choice == 2:
