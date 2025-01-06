@@ -38,6 +38,18 @@ class Prompts():
             "4. Back\n")
         return int(input("Enter your choice: "))
     
+    
+    def display_league_compare(self):
+        print("1. Premier League\n"
+            "2. Serie A\n"
+            "3. La Liga\n"
+            "4. Ligue 1\n"
+            "5. Bundesliga\n")
+        number = []
+        for i in range(1,2):
+            number.append(int(input(f"Enter the display number for any two leagues you want to compare ({i} more): \n")))     
+        return number
+    
     def display_league_prompt(self):
         print("1. Display league table\n"
             "2. Display league statistics\n"
