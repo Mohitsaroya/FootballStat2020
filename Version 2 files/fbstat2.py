@@ -5,74 +5,118 @@
 
 from Prompts import Prompts
 from Plot import Plots
+import os
+import pandas as pd
 
-class FootballAnalysis():
+class FootballAnalysis:
     def __init__(self):
-        self.plot_data = Plots(base_folder)
-        self.leagues = {1: "Premier League", 2: "Serie A", 3: "La Liga", 4: "Ligue 1", 5: "Bundesliga"}
-           
-    def choice_and_plot(self, prev_choice, csv_file):
-        choice = Prompts.choices_for_plot(self)
-        for i in range(1, 4):
-            if prev_choice == 1 and choice == i:
-                self.plot_data.table_league(i)
-            elif prev_choice == 2 and choice == i:
-                self.plot_data.plot_goals_per_match(self.plot_data.dataframes.get(csv_file))  
-            elif prev_choice == 3 and choice == i:
-                self.plot_data.plot_home_away_wins(self.plot_data.dataframes.get(csv_file))  
-    
-    def import_csv(self, filename):
-        df = self.plot_data.dataframes.get(filename)
-        if df is None or df.empty: 
-            print("League statistics data is missing or empty!")
-            return
+        self.prompts = Prompts()
+        self.base_folder = os.path.join("csv files")
+        self.plot_data = Plots(self.base_folder)
+        
+        # Mapping of leagues to their respective files
+        self.file_names = {
+            "league_stats": "leaguestatistics.csv",
+            "premier_league": "premierleaguestat.csv",
+            "serie_a": "seriastat.csv",
+            "la_liga": "laligastat.csv",
+            "ligue_1": "ligue1stat.csv",
+            "bundesliga": "bundesligastat.csv"
+        }
+        
+        
+        
+        # League number mapping
+        self.leagues = {
+            1: "Premier League",
+            2: "Serie A",
+            3: "La Liga",
+            4: "Ligue 1",
+            5: "Bundesliga"
+        }
 
-     
-    def display_general_details(self, choice):
-        l = 'league_stats'
-        self.import_csv(l)
+    def load_data(self, file_key):
+        """Load CSV file based on the given key from file_names dictionary."""
+        file_path = os.path.join(self.base_folder, self.file_names[file_key])
         try:
-            if choice == 1:
-                self.choice_and_plot(1, l)
-            elif choice == 2:
-                self.choice_and_plot(2, l)     
-            elif choice == 3:
-                self.choice_and_plot(3, l)
-            elif choice == 4:
-                return
-            else:
-                print("Invalid choice. Please select a valid option.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-        except KeyError:
-            print("Invalid input. Please enter a valid choice.")
-            
-    
-    def display_league_specific(self):
-        for i in self.leagues:
-            print(f"{i}. {self.leagues[i]}")        
+            df = pd.read_csv(file_path, encoding="ISO-8859-1")  # Handles potential encoding issues
+            return df
+        except Exception as e:
+            print(f"Error loading {file_path}: {e}")
+            return None
 
+    def display_league_stats(self):
+        """Display overall league statistics."""
+        df = self.load_data("league_stats")
+        if df is not None:
+            choice = self.prompts.choices_for_plot()
+            if choice == 1:
+                self.plot_data.plot_table(df, "league statistics table")
+            if choice in [2, 3]:
+                self.plot_data.plot_league_stats(df, choice)
+
+    def display_team_stats(self):
+        """Display team statistics for a selected league."""
+        league_choice = self.prompts.choose_team_stat()
+        league_key = list(self.file_names.keys())[league_choice]  # Convert input to corresponding filename key
+        
+        df = self.load_data(league_key)
+        if df is not None:
+            print(df)
+            choice = self.prompts.choices_for_plot()
+            if choice in [2, 3]:
+                self.plot_data.plot_team_stats(df, choice)
+
+    def compare_leagues(self):
+        """Compare statistics between two leagues."""
+        leagues = self.prompts.compare_leagues()
+        df = self.load_data("league_stats")
+
+        if df is not None:
+            league1 = self.leagues[leagues[0]]
+            league2 = self.leagues[leagues[1]]
+            df_filtered = df[df["football league"].isin([league1, league2])]
+            print(df_filtered)
+
+            choice = self.prompts.choices_for_plot()
+            if choice in [2, 3]:
+                self.plot_data.plot_league_comparison(df_filtered, choice)
+
+    def compare_teams(self):
+        """Compare statistics between two teams in the same league."""
+        league_choice, team1, team2 = self.prompts.compare_teams()
+        league_key = list(self.file_names.keys())[league_choice]
+
+        df = self.load_data(league_key)
+        if df is not None:
+            df_filtered = df[df["Club Name"].isin([team1, team2])]
+            print(df_filtered)
+
+            choice = self.prompts.choices_for_plot()
+            if choice in [2, 3]:
+                self.plot_data.plot_team_comparison(df_filtered, choice)
 
     def run(self):
-        menu = Prompts()
+        """Main menu loop for user interaction."""
         while True:
-            choice = menu.main_menu()
-            
-            if choice == 0:
-                menu.display_glossary()
-            elif choice == 1:
-                self.display_general_details(menu.display_general_prompt())
+            choice = self.prompts.main_menu()
+
+            if choice == 1:
+                self.display_league_stats()
             elif choice == 2:
-                menu.display_league_specific()
+                self.display_team_stats()
             elif choice == 3:
+                compare_choice = self.prompts.compare_options()
+                if compare_choice == 1:
+                    self.compare_leagues()
+                elif compare_choice == 2:
+                    self.compare_teams()
+            elif choice == 4:
                 print("Exiting program. Goodbye!")
                 break
             else:
-                print("Invalid choice. Please try again.")
-
-
+                print("Invalid input. Please enter a valid choice.")
 
 if __name__ == "__main__":
-    base_folder = "D:\Macewan\semester 5\CMPT 200\GitHub\FootballStat2020\csv files"
     analysis = FootballAnalysis()
     analysis.run()
