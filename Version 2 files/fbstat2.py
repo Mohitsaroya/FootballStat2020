@@ -30,7 +30,7 @@ class FootballAnalysis():
      
     def display_general_details(self, choice):
         l = 'league_stats'
-        self.import_csv()
+        self.import_csv(l)
         try:
             if choice == 1:
                 self.choice_and_plot(1, l)

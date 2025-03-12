@@ -1,16 +1,15 @@
+#this is beyond repair but you may try reparing it, i dare you to keep the structure as is
+
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df =pd.read_csv(r'<path\to\the\folder\>leaguestatistics.csv')
-df1 =pd.read_csv(r'<path\to\the\folder\>premierleaguestat.csv')
-df2 = pd.read_csv(r'<path\to\the\folder\>seriastat.csv')
-df3 = pd.read_csv(r'<path\to\the\folder\>laligastat.csv')
-df4 = pd.read_csv(r'<path\to\the\folder\>ligue1stat.csv')
-df5 = pd.read_csv(r'<path\to\the\folder\>bundesligastat.csv')
-df6 = pd.read_csv(r'<path\to\the\folder\>topplayerstat.csv')
-df7 = pd.read_csv(r'<path\to\the\folder\>topclubpayment.csv')
-df8 = pd.read_csv(r'<path\to\the\folder\>Comparisonfile.csv')
-df9 = pd.read_csv(r'<path\to\the\folder\>Comparisonfile1.csv')
+df = pd.read_csv(r'./csv files/leaguestatistics.csv', encoding='latin1')
+df1 = pd.read_csv(r'./csv files/premierleaguestat.csv', encoding='latin1')
+df2 = pd.read_csv(r'./csv files/seriastat.csv', encoding='latin1')
+df3 = pd.read_csv(r'./csv files/laligastat.csv', encoding='latin1')
+df4 = pd.read_csv(r'./csv files/ligue1stat.csv', encoding='latin1')
+df5 = pd.read_csv(r'./csv files/bundesligastat.csv', encoding='latin1')
+
 
 while True:
 
@@ -483,166 +482,6 @@ while True:
                         print('ok')
 
 ##########################################################################################
-
-    elif n == 4:
-        print(df6[['Player', 'Goals', 'Matches', 'Ratio', 'Years', 'Rank']])
-
-    elif n == 5:
-        print('What format would you prefer?\n'
-                '1. Tabular form\n'
-                '2. Line Chart form\n'                          
-                '3. Bar chart form\n'
-                '4. Back\n')
-        n51 = int(input('Enter the Number: '))
-        if n51 == 1:
-            print('M.D = Million Dollars')
-            print(df7[['Footbal Club','MarketValue(M.D.)','Revenue(M.D.)']])
-                  
-        elif n51 == 2:
-            plt.plot(df7["Footbal Club"], df7[['MarketValue(M.D.)', 'Revenue(M.D.)']])
-            plt.legend(['MarketValue(M.D.)', 'Revenue(M.D.)'])
-            plt.title('Market Value and Revenue(in million US dollars) of top 10 football clubs')
-            plt.xlabel('Club')
-            plt.ylabel('Market Value and Revenue(in million US dollars)')
-            plt.xticks(rotation = 15)
-            plt.show()
-            
-        elif n51 == 3:
-            df7.plot(x = "Footbal Club", y = ['MarketValue(M.D.)', 'Revenue(M.D.)'],kind = 'bar', color = ['r','c','b'],
-                    title = "Market Value and Revenue(in million US dollars", edgecolor = 'black', rot = 12)
-            plt.show()   
-        
-        else:
-            print('ok')
-##########################################################################################
-
-    elif n == 6:
-
-        print('Pick one of the below options:\n'
-              '1. Comparison of the chart topping clubs from each league\n'
-              '2. Comparison of the losing clubs from each club\n')
-
-        n61 = int(input('Enter the number here: '))
-
-            
-        if n61 == 1:
-            print(df8['Club Name'])
-            print("1. Club Points, points per game\n"
-              "2. Win/draw/lose chart with points per match\n"
-              "3. Goals for/goals against and goal difference\n"
-              "4. other details\n"
-              '============================================================\n')
-            n611 = int(input('Enter number: '))
-            if n611 == 1:
-                print(df8[['Club Name', 'Points', 'PPG']])
-            elif n611 == 2:
-                print('What format would you prefer?\n'
-                          '1. Tabular form\n'
-                          '2. Line Chart form\n'
-                          '3. Bar chart form\n'
-                          '4. Back\n')
-                n6111 = int(input('Enter number: '))
-                if n6111 == 1:
-                    print(df8[['Club Name', 'Win', 'Draw', 'Lose']])
-                elif n6111 == 2:
-                    plt.plot(df8["Club Name"], df8[['Win', 'Draw', 'Lose']])
-                    plt.legend(['Win', 'Draw', 'Lose'])
-                    plt.title('Win/draw/lose chart with points per match')
-                    plt.xlabel('Club')
-                    plt.ylabel('Win/draw/lose')
-                    plt.xticks(rotation = 15)
-                    plt.show()
-                    
-                elif n6111 == 3:
-                     df8.plot(x = "Club Name", y = ['Win', 'Draw', 'Lose'],kind = 'bar', color = ['r','c','b'],
-                              title = "Win/draw/lose chart with points per match", edgecolor = 'black', rot = 12)
-                     plt.show()
-                else:
-                    print('ok')
-            elif n611 == 3:
-                print('What format would you prefer?\n'
-                          '1. Tabular form\n'
-                          '2. Line Chart form\n'
-                          '3. Bar chart form\n'
-                          '4. Back\n')
-                n612 = int(input('Enter Number: '))
-                if n612 == 1:
-                    print(df8[['Club Name', 'GF', 'GA', 'GD']])
-                elif n612 == 2:
-                    plt.plot(df8["Club Name"], df8[['GF', 'GA', 'GD']])
-                    plt.legend(['GF', 'GA', 'GD'])
-                    plt.title('Goals for/goals against and goal difference')
-                    plt.xlabel('Club')
-                    plt.ylabel('Goals for/goals against and goal difference details')
-                    plt.xticks(rotation = 15)
-                    plt.show()
-                    
-                elif n612 == 3:
-                     df8.plot(x = "Club Name", y = ['GF', 'GA', 'GD'],kind = 'bar', color = ['r','c','b'],
-                              title = "Goals for/goals against and goal difference", edgecolor = 'black', rot = 12)
-                     plt.show()
-                else:
-                    print('ok')
-            
-
-        elif n61 == 2:
-            print(df9['Club Name'])
-            print("1. Club Points, points per game\n"
-              "2. Win/draw/lose chart with points per match\n"
-              "3. Goals for/goals against and goal difference\n"
-              "4. other details\n"
-              '============================================================\n')
-            n612 = int(input('Enter number: '))
-            if n612 == 1:
-                print(df9[['Club Name', 'Points', 'PPG']])
-            elif n612 == 2:
-                print('What format would you prefer?\n'
-                          '1. Tabular form\n'
-                          '2. Line Chart form\n'
-                          '3. Bar chart form\n'
-                          '4. Back\n')
-                n6112 = int(input('Enter number: '))
-                if n6112 == 1:
-                    print(df8[['Club Name', 'Win', 'Draw', 'Lose']])
-                elif n6112 == 2:
-                    plt.plot(df9["Club Name"], df9[['Win', 'Draw', 'Lose']])
-                    plt.legend(['Win', 'Draw', 'Lose'])
-                    plt.title('Win/draw/lose chart with points per match')
-                    plt.xlabel('Club')
-                    plt.ylabel('Win/draw/lose')
-                    plt.xticks(rotation = 15)
-                    plt.show()
-                    
-                elif n6112 == 3:
-                     df9.plot(x = "Club Name", y = ['Win', 'Draw', 'Lose'],kind = 'bar', color = ['r','c','b'],
-                              title = "Win/draw/lose chart with points per match", edgecolor = 'black', rot = 12)
-                     plt.show()
-                else:
-                    print('ok')
-            elif n612 == 3:
-                print('What format would you prefer?\n'
-                          '1. Tabular form\n'
-                          '2. Line Chart form\n'
-                          '3. Bar chart form\n'
-                          '4. Back\n')
-                n6122 = int(input('Enter Number: '))
-                if n6122 == 1:
-                    print(df8[['Club Name', 'GF', 'GA', 'GD']])
-                elif n6122 == 2:
-                    plt.plot(df9["Club Name"], df9[['GF', 'GA', 'GD']])
-                    plt.legend(['GF', 'GA', 'GD'])
-                    plt.title('Goals for/goals against and goal difference')
-                    plt.xlabel('Club')
-                    plt.ylabel('Goals for/goals against and goal difference details')
-                    plt.xticks(rotation = 15)
-                    plt.show()
-                    
-                elif n6122 == 3:
-                     df9.plot(x = "Club Name", y = ['GF', 'GA', 'GD'],kind = 'bar', color = ['r','c','b'],
-                              title = "Goals for/goals against and goal difference", edgecolor = 'black', rot = 12)
-                     plt.show()
-                else:
-                    print('ok')
             
     elif n > 7:
         print('============================================================\n'
