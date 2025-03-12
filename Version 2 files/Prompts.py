@@ -23,7 +23,7 @@ class Prompts():
               "============================================================")
 
     def choose_league_stat(self):
-        print("Select a League to View Statistics:\n"
+        print("\nSelect a League to View Statistics:\n"
               "1. Premier League\n"
               "2. Serie A\n"
               "3. La Liga\n"
@@ -32,7 +32,7 @@ class Prompts():
         return int(input("Enter your choice: "))
 
     def choose_team_stat(self):
-        print("Choose a League to View Team-Specific Statistics:\n"
+        print("\nChoose a League to View Team-Specific Statistics:\n"
               "1. Premier League\n"
               "2. Serie A\n"
               "3. La Liga\n"
@@ -41,14 +41,14 @@ class Prompts():
         return int(input("Enter your choice: "))
 
     def compare_options(self):
-        print("Compare Options:\n"
+        print("\nCompare Options:\n"
               "1. Compare Two Leagues\n"
               "2. Compare Two Teams\n"
               "3. Back")
         return int(input("Enter your choice: "))
 
     def compare_leagues(self):
-        print("Select Two Leagues to Compare:\n"
+        print("\nSelect Two Leagues to Compare:\n"
               "1. Premier League\n"
               "2. Serie A\n"
               "3. La Liga\n"
@@ -60,7 +60,7 @@ class Prompts():
         return leagues
 
     def compare_teams(self):
-        print("Select a League to Compare Two Teams From:\n"
+        print("\nSelect a League to Compare Two Teams From:\n"
               "1. Premier League\n"
               "2. Serie A\n"
               "3. La Liga\n"
@@ -74,8 +74,13 @@ class Prompts():
         
         return league_choice, team1, team2
 
-    def choices_for_plot(self):
-        print("1. Table\n"
+    def choices_for_plot_gen(self):
+        print("\n1. Table\n"
               "2. Line Chart\n"
               "3. Bar Chart\n")
+        return int(input("Enter your choice: "))
+
+    def choices_for_plot(self):
+        print("\n1. Line Chart\n"
+              "2. Bar Chart\n")
         return int(input("Enter your choice: "))

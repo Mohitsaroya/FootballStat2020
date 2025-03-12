@@ -13,8 +13,6 @@ class FootballAnalysis:
         self.prompts = Prompts()
         self.base_folder = os.path.join("csv files")
         self.plot_data = Plots(self.base_folder)
-        
-        # Mapping of leagues to their respective files
         self.file_names = {
             "league_stats": "leaguestatistics.csv",
             "premier_league": "premierleaguestat.csv",
@@ -23,10 +21,7 @@ class FootballAnalysis:
             "ligue_1": "ligue1stat.csv",
             "bundesliga": "bundesligastat.csv"
         }
-        
-        
-        
-        # League number mapping
+
         self.leagues = {
             1: "Premier League",
             2: "Serie A",
@@ -39,7 +34,7 @@ class FootballAnalysis:
         """Load CSV file based on the given key from file_names dictionary."""
         file_path = os.path.join(self.base_folder, self.file_names[file_key])
         try:
-            df = pd.read_csv(file_path, encoding="ISO-8859-1")  # Handles potential encoding issues
+            df = pd.read_csv(file_path, encoding="ISO-8859-1")
             return df
         except Exception as e:
             print(f"Error loading {file_path}: {e}")
@@ -49,7 +44,7 @@ class FootballAnalysis:
         """Display overall league statistics."""
         df = self.load_data("league_stats")
         if df is not None:
-            choice = self.prompts.choices_for_plot()
+            choice = self.prompts.choices_for_plot_gen()
             if choice == 1:
                 self.plot_data.plot_table(df, "league statistics table")
             if choice in [2, 3]:
@@ -58,13 +53,13 @@ class FootballAnalysis:
     def display_team_stats(self):
         """Display team statistics for a selected league."""
         league_choice = self.prompts.choose_team_stat()
-        league_key = list(self.file_names.keys())[league_choice]  # Convert input to corresponding filename key
+        league_key = list(self.file_names.keys())[league_choice] 
         
         df = self.load_data(league_key)
         if df is not None:
             print(df)
             choice = self.prompts.choices_for_plot()
-            if choice in [2, 3]:
+            if choice in [1, 2]:
                 self.plot_data.plot_team_stats(df, choice)
 
     def compare_leagues(self):
@@ -79,7 +74,7 @@ class FootballAnalysis:
             print(df_filtered)
 
             choice = self.prompts.choices_for_plot()
-            if choice in [2, 3]:
+            if choice in [1, 2]:
                 self.plot_data.plot_league_comparison(df_filtered, choice)
 
     def compare_teams(self):
@@ -93,7 +88,7 @@ class FootballAnalysis:
             print(df_filtered)
 
             choice = self.prompts.choices_for_plot()
-            if choice in [2, 3]:
+            if choice in [1, 2]:
                 self.plot_data.plot_team_comparison(df_filtered, choice)
 
     def run(self):
