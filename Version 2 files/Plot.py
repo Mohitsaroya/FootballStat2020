@@ -14,39 +14,30 @@ class Plots():
         }
         self.dataframes = {}
 
-    def plot_league_stats(self, df, choice):
-        """Plots general league statistics."""
-        if choice == 2:
-            plt.plot(df["football league"], df["goals per match"], marker='o', linestyle='-')
-            plt.xlabel("Football League")
-            plt.ylabel("Goals per Match")
-            plt.title("Goals per Match by League")
-            plt.xticks(rotation=35)
-            plt.grid(True)
-            plt.show()
-        elif choice == 3:
-            df.plot(x="football league", y="goals per match", kind='bar', title="Goals per Match by League", legend=False)
-            plt.xlabel("Football League")
-            plt.ylabel("Goals per Match")
-            plt.xticks(rotation=35)
-            plt.show()
 
-    def plot_team_stats(self, df, choice):
+    def plot_stats(self, df, title, choice):
         """Plots team statistics for a specific league."""
         if choice == 1:
-            plt.plot(df["Club Name"], df["Points"], marker='o', linestyle='-', color="blue", label="Points")
-            plt.xlabel("Club Name")
-            plt.ylabel("Points")
-            plt.title("Team Points in League")
+            if df.columns[0] == "Club Name":
+                for column in df.columns[1:]:
+                    plt.plot(df["Club Name"], df[column], marker='o', linestyle='-', label=column)
+                plt.xlabel("Club Name")
+            else:
+                for column in df.columns[1:]:
+                    plt.plot(df["football league"], df[column], marker='o', linestyle='', label=column)
+                plt.xlabel("League Name")
+            plt.ylabel("Values")
+            plt.title(title)
             plt.xticks(rotation=35)
             plt.legend()
             plt.grid(True)
             plt.show()
         elif choice == 2:
-            df.plot(x="Club Name", y="Points", kind='bar', title="Team Points in League", legend=False, color="blue")
+            df.plot(x="Club Name", kind='bar', title=title)
             plt.xlabel("Club Name")
-            plt.ylabel("Points")
+            plt.ylabel("Values")
             plt.xticks(rotation=35)
+            plt.legend(df.columns[1:])  
             plt.show()
 
     def plot_league_comparison(self, df, choice):
@@ -62,6 +53,7 @@ class Plots():
             plt.legend()
             plt.grid(True)
             plt.show()
+            
         elif choice == 2:
             df.plot(x="football league", y=["goals per match", "home goals per match", "away goals per match"],
                     kind='bar', title="League Comparison: Goals per Match")
@@ -93,24 +85,20 @@ class Plots():
             plt.show()
 
 
-    def plot_table(self, df, title):
-        """Displays the dataframe as a table using matplotlib."""
+    def plot_table(self, data, title, columns):
+        """Displays the data as a table using matplotlib."""
         fig, ax = plt.subplots(figsize=(12, 8))  
         ax.axis('tight')
         ax.axis('off')
-        wrapped_columns = [textwrap.fill(col, width=15) for col in df.columns]
         
-        table = ax.table(cellText=df.values, colLabels=wrapped_columns, cellLoc='center', loc='center')
+        wrapped_columns = [textwrap.fill(col, width=15) for col in columns]
+        table = ax.table(cellText=data, colLabels=wrapped_columns, cellLoc='center', loc='center')
         table.auto_set_font_size(False)
         table.set_fontsize(10)
         table.scale(1.2, 1.2)
-        
-        cell_dict = table.get_celld()
-        for i in range(len(df.columns)):
-            cell_dict[(0, i)].set_height(0.1)
-        for i in range(1, len(df) + 1):
-            for j in range(len(df.columns)):
-                cell_dict[(i, j)].set_height(0.03)
-        
+        cell_1 = table.get_celld()
+        for i in range(len(columns)):
+            cell_1[(0, i)].set_height(.1)
         plt.title(title)
         plt.show()
+    

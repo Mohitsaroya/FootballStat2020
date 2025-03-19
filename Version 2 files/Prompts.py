@@ -9,11 +9,13 @@ class Prompts():
               "2. View Team-Specific Statistics\n"
               "3. Compare Leagues or Teams\n"
               "4. Exit\n"
-              "---------------------------------------------------------------------------")
+              "---------------------------------------------------------------------------\n"
+              "0. Glossary\n")
         return int(input("Enter your choice: "))
 
     def display_glossary(self):
         print("============================================================\n"
+              "GP: Games Played\n"
               "GF: Goals For (goals scored by the team)\n"
               "GA: Goals Against (goals scored against the team)\n"
               "GD: Goal Difference (difference between GF and GA)\n"
@@ -79,6 +81,24 @@ class Prompts():
               "2. Line Chart\n"
               "3. Bar Chart\n")
         return int(input("Enter your choice: "))
+    
+    def data_vals_prompt(self, header):
+        print(f"\nChoose from the given options what you want you see (max allowed: {len(header)}), type 'end' to finish")
+        retlist = []
+        retlist_len_count = 0
+        while len(retlist) < len(header):
+            ind_val = input(f"Enter value {retlist_len_count + 1} for display: ")
+            if str(ind_val) == "end":
+                return retlist
+            
+            retlist_len_count += 1
+            if int(ind_val) not in retlist and 0 <= int(ind_val) <= 6:
+                retlist.append(int(ind_val))
+            else:
+                print(">> invalid input, please retry")
+                retlist_len_count -= 1
+                
+        return retlist
 
     def choices_for_plot(self):
         print("\n1. Line Chart\n"
