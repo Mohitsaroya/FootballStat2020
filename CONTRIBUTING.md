@@ -51,7 +51,7 @@ We welcome pull requests from everyone. If you are new to GitHub, here are the s
     git push origin feature-name
     ```
 
-7. **Open a pull request**: Go to the original repository and click "New Pull Request". Provide a clear and descriptive title and description for your pull request. 
+7. **Open a pull request**: Go to the original repository and click "New Pull Request". Could you provide a clear and descriptive title and description for your pull request? 
 
 ### Code Style
 
@@ -63,10 +63,6 @@ Please follow these coding guidelines:
 ### Testing
 
 Before submitting your changes, please make sure to test your code thoroughly. If applicable, add new tests to cover your changes.
-
-### Code of Conduct
-
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
 
 ## Getting Help
 
